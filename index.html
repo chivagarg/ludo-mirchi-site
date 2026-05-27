@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0c0c0c">
-  <title>Ludo Mirchi — Offline Board Game for iPad</title>
+  <title>Ludo Mirchi — Offline Board Game for iPhone & iPad</title>
   <style>
     :root {
       --bg: #0c0c0c;
@@ -117,9 +117,6 @@
     }
 
     .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 16px;
       margin-bottom: 3rem;
     }
 
@@ -131,11 +128,36 @@
       background: var(--surface);
     }
 
-    /* Match iPad screenshots: 1620×2160 (3:4) */
+    /* Row 1: iPhone (narrow) + iPad preview, vertically centered as a pair */
+    .gallery-videos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 20px 28px;
+      max-width: 520px;
+      margin: 0 auto 20px;
+    }
+
+    .gallery-figure--phone {
+      flex: 0 0 auto;
+      width: 168px;
+    }
+
+    .gallery-figure--ipad {
+      flex: 0 0 auto;
+      width: 100%;
+      max-width: 300px;
+    }
+
     .gallery-media {
       aspect-ratio: 3 / 4;
       width: 100%;
       background: #000;
+    }
+
+    .gallery-media--phone {
+      aspect-ratio: 9 / 19.5;
     }
 
     .gallery-media img,
@@ -146,6 +168,10 @@
       display: block;
     }
 
+    .gallery-media--phone video {
+      object-fit: contain;
+    }
+
     .gallery figcaption {
       padding: 0.6em 0.85em;
       font-size: 0.82em;
@@ -153,8 +179,45 @@
       border-top: 1px solid var(--border);
     }
 
+    /* Rows 2–3: iPad screenshots (1620×2160, 3:4) */
+    .gallery-screenshots {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 640px) {
+      .gallery-videos {
+        gap: 12px 20px;
+        max-width: none;
+      }
+
+      .gallery-figure--phone {
+        width: 140px;
+      }
+
+      .gallery-figure--ipad {
+        max-width: 240px;
+      }
+
+      .gallery-screenshots {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     @media (min-width: 900px) {
-      .gallery { grid-template-columns: repeat(3, 1fr); }
+      .gallery-videos {
+        gap: 24px 36px;
+        max-width: 540px;
+      }
+
+      .gallery-figure--phone {
+        width: 188px;
+      }
+
+      .gallery-figure--ipad {
+        max-width: 320px;
+      }
     }
 
     /* Content sections */
@@ -201,8 +264,8 @@
       <p class="tagline">No Ads. No Wi-Fi. Family Fun.</p>
       <div class="download">
         <p class="download-note">
-          <strong>Available on iPad only</strong> — requires iPadOS 15 or later.
-          iPhone and Google Play versions are coming soon.
+          <strong>Available on iPhone and iPad</strong> — requires iOS 15 or later.
+          Google Play version coming soon.
         </p>
         <a
           class="app-store-btn"
@@ -215,68 +278,86 @@
           </svg>
           <span class="app-store-btn-text">
             Download on the App Store
-            <small>For iPad</small>
+            <small>For iPhone &amp; iPad</small>
           </span>
         </a>
         <span class="coming-soon">Free · optional in-app purchases</span>
       </div>
       <p class="lead">
         Ludo with a spicy twist. Move backward in Mirchi Mode to capture, escape, and take revenge:
-        solo against smart robots, or 2–4 players on one iPad. No ads, ever.
+        solo against smart robots, or 2–4 players on one device. No ads, ever.
       </p>
     </header>
 
     <div class="gallery" aria-label="Screenshots and preview">
-      <figure>
-        <div class="gallery-media">
-          <video
-            src="media/Ludo%20Mirchi%20Preview%20Dark%20v1.mp4"
-            autoplay
-            muted
-            loop
-            playsinline
-            controls
-            aria-label="Ludo Mirchi gameplay preview"
-          ></video>
-        </div>
-        <figcaption>Gameplay preview</figcaption>
-      </figure>
-      <figure>
-        <div class="gallery-media">
-          <img src="media/IMG_0110.PNG" alt="Gameplay with fruit pawns and First Kill scoring bonus">
-        </div>
-        <figcaption>Strategic scoring — every capture counts</figcaption>
-      </figure>
-      <figure>
-        <div class="gallery-media">
-          <img src="media/IMG_0114.PNG" alt="Active gameplay with fruit pawns and bonus points">
-        </div>
-        <figcaption>Mirchi Mode — backward moves that still capture</figcaption>
-      </figure>
-      <figure>
-        <div class="gallery-media">
-          <img src="media/IMG_0111.PNG" alt="Four-player Ludo board with fruit-themed pawns">
-        </div>
-        <figcaption>2–4 players on one iPad</figcaption>
-      </figure>
-      <figure>
-        <div class="gallery-media">
-          <img src="media/IMG_0113.PNG" alt="Ludo board showing Mirchi Mode and pawn powers">
-        </div>
-        <figcaption>Traps, safe zones, and pawn powers on the board</figcaption>
-      </figure>
-      <figure>
-        <div class="gallery-media">
-          <img src="media/IMG_0115.PNG" alt="Late-game board with shields and special tiles">
-        </div>
-        <figcaption>Deploy traps and safe zones anywhere</figcaption>
-      </figure>
-      <figure>
-        <div class="gallery-media">
-          <img src="media/IMG_0116.PNG" alt="Game setup screen with fruit pawn selection and robot toggles">
-        </div>
-        <figcaption>Pick fruit pawns, set robots, and start — no sign-in required</figcaption>
-      </figure>
+      <div class="gallery-videos" aria-label="Gameplay previews">
+        <figure class="gallery-figure--phone">
+          <div class="gallery-media gallery-media--phone">
+            <video
+              src="media/LudoMirchiIPhonePreview.mov"
+              autoplay
+              muted
+              loop
+              playsinline
+              controls
+              aria-label="Ludo Mirchi iPhone gameplay preview"
+            ></video>
+          </div>
+          <figcaption>iPhone preview</figcaption>
+        </figure>
+        <figure class="gallery-figure--ipad">
+          <div class="gallery-media">
+            <video
+              src="media/Ludo%20Mirchi%20Preview%20Dark%20v1.mp4"
+              autoplay
+              muted
+              loop
+              playsinline
+              controls
+              aria-label="Ludo Mirchi iPad gameplay preview"
+            ></video>
+          </div>
+          <figcaption>iPad preview</figcaption>
+        </figure>
+      </div>
+      <div class="gallery-screenshots" aria-label="Screenshots">
+        <figure>
+          <div class="gallery-media">
+            <img src="media/IMG_0110.PNG" alt="Gameplay with fruit pawns and First Kill scoring bonus">
+          </div>
+          <figcaption>Strategic scoring — every capture counts</figcaption>
+        </figure>
+        <figure>
+          <div class="gallery-media">
+            <img src="media/IMG_0114.PNG" alt="Active gameplay with fruit pawns and bonus points">
+          </div>
+          <figcaption>Mirchi Mode — backward moves that still capture</figcaption>
+        </figure>
+        <figure>
+          <div class="gallery-media">
+            <img src="media/IMG_0111.PNG" alt="Four-player Ludo board with fruit-themed pawns">
+          </div>
+          <figcaption>2–4 players on one device</figcaption>
+        </figure>
+        <figure>
+          <div class="gallery-media">
+            <img src="media/IMG_0113.PNG" alt="Ludo board showing Mirchi Mode and pawn powers">
+          </div>
+          <figcaption>Traps, safe zones, and pawn powers on the board</figcaption>
+        </figure>
+        <figure>
+          <div class="gallery-media">
+            <img src="media/IMG_0115.PNG" alt="Late-game board with shields and special tiles">
+          </div>
+          <figcaption>Deploy traps and safe zones anywhere</figcaption>
+        </figure>
+        <figure>
+          <div class="gallery-media">
+            <img src="media/IMG_0116.PNG" alt="Game setup screen with fruit pawn selection and robot toggles">
+          </div>
+          <figcaption>Pick fruit pawns, set robots, and start — no sign-in required</figcaption>
+        </figure>
+      </div>
     </div>
 
     <section>
@@ -285,7 +366,7 @@
         <li><strong>Mirchi Mode:</strong> Each player gets 5 backward moves per game. Use them to surprise opponents, escape captures, and turn the game around. Backwards still captures.</li>
         <li><strong>Robot Opponents:</strong> No friends nearby? Play solo. Any player slot can be set to a smart robot — perfect for travel, late nights, or a quick game between meetings.</li>
         <li><strong>Pawn Powers:</strong> Unlock pawns with special abilities: deploy traps, drop safe zones anywhere on the board, force a 6 on your dice, or gain extra backward moves.</li>
-        <li><strong>One iPad. No Internet:</strong> Built for pass-and-play on a single iPad — couch, kitchen table, plane tray. No Wi-Fi, no sign-in, no chat, no accounts. Just hand the iPad around.</li>
+        <li><strong>One Device. No Internet:</strong> Built for pass-and-play on a single iPhone or iPad — couch, kitchen table, plane tray. No Wi-Fi, no sign-in, no chat, no accounts. Just hand the device around.</li>
         <li><strong>No Ads, Ever:</strong> No banners. No forced videos. No "watch an ad to continue." We mean it.</li>
         <li><strong>Strategic Scoring:</strong> Captures, first-blood bonus, finish bonuses, top-kills, unluckiest-roll — every move and every dice matters in the final ranking.</li>
       </ul>
@@ -304,7 +385,7 @@
         <li>Extra backward moves (Red pawns)</li>
         <li>Detailed end-game scoring and bonuses</li>
         <li>100% offline — no internet, no sign-in, no chat</li>
-        <li>Designed for iPad</li>
+        <li>Designed for iPhone &amp; iPad</li>
       </ul>
     </section>
 
